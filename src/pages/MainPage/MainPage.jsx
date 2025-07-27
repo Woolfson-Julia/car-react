@@ -1,37 +1,18 @@
-import Filter from "../../components/Filters/Filters";
-import RecipesList from "../../components/RecipesList/RecipesList";
-// import Loader from "../../components/Loader/Loader"
-import SearchBox from "../../components/SearchBox/SearchBox";
-import { selectFilter } from "../../redux/filters/selectors";
-import { resetFilters } from "../../redux/filters/slice";
+import { Link } from "react-router-dom";
 import css from "./MainPage.module.css";
 
-import { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-// import {selectRecipesLoading} from "../../redux/recipes/selectors"
-
-
 export default function MainPage() {
-  const dispatch = useDispatch();
-
-  const searchValue = useSelector(selectFilter);
-  // const isLoading = useSelector(selectRecipesLoading);
-
-  useEffect(() => {
-    dispatch(resetFilters());
-    return () => dispatch(resetFilters());
-  }, [dispatch]);
   return (
     <>
-      <SearchBox />
-      <div className="section">
-        <div className="container">
-          <h2 className={css.title}>
-            {searchValue ? `Search results for "${searchValue}"` : "Recipes"}
-          </h2>
-          <Filter />
-          {/* {isLoading && searchValue ? <Loader /> : <RecipesList />} */}
-          <RecipesList />
+      <div className={css.section}>
+        <div className={`container ${css.containerHero}`}>
+          <h1 className={css.title}>Find your perfect rental car</h1>
+          <p className={css.text}>
+            Reliable and budget-friendly rentals for any journey
+          </p>
+          <Link to="/catalog" className={css.btnLink}>
+            View Catalog
+          </Link>
         </div>
       </div>
     </>

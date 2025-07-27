@@ -10,30 +10,21 @@ import {
   REGISTER,
 } from "redux-persist";
 import storage from "redux-persist/lib/storage";
-import filtersReducer from "./filters/slice";
-import authReducer from "./auth/slice";
-import recipesReducer from "./recipes/slice";
-
-import recipesListenerMiddleware from "./recipes/middlewares";
-import filtersListenerMiddleware from "./filters/middlewares";
-import modalReducer from "./modal/slice.js";
+import carsReducer from "./cars/slice.js";
 
 
-const persistedAuthReducer = persistReducer(
-  {
-    key: "user-token",
-    storage,
-    whitelist: ["accessToken"],
-  },
-  authReducer
-);
+
+const carsPersistConfig = {
+  key: "cars",
+  storage,
+  whitelist: ["favorites"],
+};
+
+const persistedCarsReducer = persistReducer(carsPersistConfig, carsReducer);
 
 export const store = configureStore({
   reducer: {
-    filters: filtersReducer,
-    auth: persistedAuthReducer,
-    recipes: recipesReducer,
-    modal: modalReducer,
+    cars: persistedCarsReducer,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({
@@ -41,8 +32,6 @@ export const store = configureStore({
         ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
       },
     })
-      .concat(recipesListenerMiddleware.middleware)
-      .concat(filtersListenerMiddleware.middleware),
 });
 
 export default store;

@@ -1,52 +1,64 @@
 @font-face {
-  font-family: 'Montserrat';
-  src: url('/fonts/montserrat-v30-latin-regular.woff2') format('woff2');
+  font-family: "Manrope";
+  src: url("/fonts/manrope-regular.woff2") format("woff2");
   font-weight: 400;
   font-style: normal;
 }
 
 @font-face {
-  font-family: 'Montserrat';
-  src: url('/fonts/montserrat-v30-latin-600.woff2') format('woff2');
+  font-family: "Manrope";
+  src: url("/fonts/manrope-medium.woff2") format("woff2");
+  font-weight: 500;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Manrope";
+  src: url("/fonts/manrope-semibold.woff2") format("woff2");
   font-weight: 600;
   font-style: normal;
 }
 
 @font-face {
-  font-family: 'Montserrat';
-  src: url('/fonts/montserrat-v30-latin-700.woff2') format('woff2');
+  font-family: "Manrope";
+  src: url("/fonts/manrope-bold.woff2") format("woff2");
   font-weight: 700;
   font-style: normal;
 }
 
-:root {
-  /* Typography */
-  --font-family: "Montserrat", sans-serif;
-
-  /* Neutral colors */
-  --color-white: #ffffff;
-  --color-black: #000000;
-  --color-bg-light: #fbfcf8;
-
-  /* Brown palette */
-  --color-brown-500: #9b6c43;
-  --color-brown-700: #6d554b;
-  /*500 — базовый, основной цвет (часто используется как default)
-  700 — тёмный оттенок этого цвета */
-
-  /* Container paddings */
-  --padding-mobile: 10px;
-  --padding-tablet: 15px;
-
-  /* Container widths */
-  --max-width-mobile: 380px; /* 360 контент (по макету) + 2*10 падинги */
-  --max-width-tablet: 735px; /* 705 контент (по макету) + 2*15 падинги */
-  --max-width-desktop: 1254px; /* 1224 контент (по макету) + 2*15 падинги */
-
-  /* Section padding */
-  --section-padding: 48px;
+@font-face {
+  font-family: "Inter";
+  src: url("/fonts/inter-regular.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
 }
 
+@font-face {
+  font-family: "Inter";
+  src: url("/fonts/inter-medium.woff2") format("woff2");
+  font-weight: 500;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Inter";
+  src: url("/fonts/inter-semibold.woff2") format("woff2");
+  font-weight: 600;
+  font-style: normal;
+}
+
+:root {
+  --font-family: "Manrope", sans-serif;
+  --second-family: "Inter", sans-serif;
+  --main: #101828;
+  --gray: #8d929a;
+  --gray-light: #dadde1;
+  --badges: #f2f4f7;
+  --inputs: #f7f7f7;
+  --white: #fff;
+  --button: #3470ff;
+  --button-hover: #0b44cd;
+}
 
 html,
 body,
@@ -56,8 +68,8 @@ body,
 
 body {
   font-family: var(--font-family);
-  background-color: var(--color-bg);
-  color: var(--color-text);
+  background-color: var(--white);
+  color: var(--main);
   margin: 0;
   padding: 0;
 }
@@ -84,6 +96,7 @@ ol {
 a {
   text-decoration: none;
   color: inherit;
+  cursor: pointer;
 }
 
 img {
@@ -101,27 +114,12 @@ svg {
 }
 
 .container {
-  min-width: 320px;
-  max-width: var(--max-width-mobile);
-  padding-left: var(--padding-mobile);
-  padding-right: var(--padding-mobile);
+  padding-left: 16px;
+  padding-right: 16px;
   margin: 0 auto;
+
 }
 .section {
-  padding-top: var(--section-padding);
-  padding-bottom: var(--section-padding);
-}
-
-@media screen and (min-width: 768px) {
-  .container {
-    max-width: var(--max-width-tablet);
-    padding-left: var(--padding-tablet);
-    padding-right: var(--padding-tablet);
-  }
-}
-
-@media screen and (min-width: 1440px) {
-  .container {
-    max-width: var(--max-width-desktop);
-  }
+  padding-top: 84px;
+  padding-bottom: 104px;
 }

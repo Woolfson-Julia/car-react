@@ -1,235 +1,155 @@
 import { useState, useEffect } from "react";
-import { useLocation } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import {
-  changeCategoryFilter,
-  changeIngredientFilter,
-} from "../../redux/filters/slice";
-// import { fetchRecipesWithFilters } from "../../redux/recipes/operations";
-import {
-  fetchCategories,
-  fetchIngredients,
-} from "../../redux/filters/operations";
-import {
-  selectCategories,
-  selectIngredients,
-  selectCategory,
-  selectIngredient,
-  // selectFilter,
-} from "../../redux/filters/selectors";
-import {
-  // selectRecipesCount,
-  selectRecipesCountByPage,
-} from "../../redux/recipes/selectors.js";
-import IconButton from "../IconButton/IconButton";
-import { useIsMobileOrTablet } from "./useIsMobileOrTablet.js";
+import { useNavigate, useSearchParams } from "react-router-dom";
+
+import { selectAllPrices, selectBrands } from "../../redux/cars/selectors";
+import { fetchBrands } from "../../redux/cars/operations";
+
 import css from "./Filters.module.css";
-import ToastInfo from "../ToastInfo/ToastInfo.jsx";
+import Button from "../Button/Button";
+import Select from "react-select";
+import IconDown from "../IconDown/IconDown";
+import { getCustomStyles } from "./selectStyles";
 
-export default function Filter() {
+export default function CarFilters({ onChange }) {
   const dispatch = useDispatch();
-  const [isModalOpen, setIsModalOpen] = useState(false);
-  const isMobileOrTablet = useIsMobileOrTablet();
+  const navigate = useNavigate();
+  const [searchParams] = useSearchParams();
+
+  const brands = useSelector(selectBrands);
+  const allPrices = useSelector(selectAllPrices);
+
+  const [brand, setBrand] = useState("");
+  const [price, setPrice] = useState("");
+  const [fromMileage, setFromMileage] = useState("");
+  const [toMileage, setToMileage] = useState("");
+
+  // Загрузка брендов при монтировании
   useEffect(() => {
-    if (!isModalOpen) return;
-    const handleEsc = (event) => {
-      if (event.key === "Escape") {
-        setIsModalOpen(false);
-      }
-    };
-    window.addEventListener("keydown", handleEsc);
-    return () => {
-      window.removeEventListener("keydown", handleEsc);
-    };
-  }, [isModalOpen]);
-  const handleOverlayClick = (e) => {
-    if (e.target === e.currentTarget) {
-      setIsModalOpen(false);
-    }
-  };
-  const handleFiltersBtnClick = () => {
-    setIsModalOpen(true);
-  };
-
-  const location = useLocation();
-
-  let page = "main";
-  if (location.pathname.includes("favorites")) page = "favorites";
-  if (location.pathname.includes("own")) page = "own";
-
-  const recipesCount = useSelector((state) =>
-    selectRecipesCountByPage(state, page)
-  );
-  const categories = useSelector(selectCategories);
-  const ingredients = useSelector(selectIngredients);
-  const category = useSelector(selectCategory);
-  const ingredient = useSelector(selectIngredient);
-  // const title = useSelector(selectFilter);
-  // const recipesCount = useSelector(selectRecipesCount);
-
-  useEffect(() => {
-    dispatch(fetchCategories());
-    dispatch(fetchIngredients());
+    dispatch(fetchBrands());
   }, [dispatch]);
-  // useEffect(() => {
-  //   dispatch(fetchRecipesWithFilters({ category, ingredient, title }));
-  // }, [category, ingredient, title, dispatch]);
 
-  const handleResetClick = () => {
-    dispatch(changeCategoryFilter(""));
-    dispatch(changeIngredientFilter(""));
-  };
-  const handleCategoryChange = (e) => {
-    const filterValue = e.target.value;
-    dispatch(changeCategoryFilter(filterValue));
-  };
-  const handleIngredientChange = (e) => {
-    const filterValue = e.target.value;
-    dispatch(changeIngredientFilter(filterValue));
-  };
+  // Синхронизация стейтов с параметрами URL при изменении URL
+  useEffect(() => {
+    setBrand(searchParams.get("brand") || "");
+    setPrice(searchParams.get("price") || "");
+    setFromMileage(searchParams.get("minMileage") || "");
+    setToMileage(searchParams.get("maxMileage") || "");
+  }, [searchParams]);
 
-  return (
-    <>
-      <div className={`${css.filtersContainer}`}>
-        <div className={css.filtersRow}>
-          <span className={css.filtersCount}>
-            {recipesCount}
-            {recipesCount === 1 ? " recipe" : " recipes"}
-          </span>
-          {!isMobileOrTablet && (
-            <div className="filtersInputsWrapper">
-              <form className={css.filtersForm}>
-                <button
-                  className={css.filtersResetBtn}
-                  type="button"
-                  onClick={handleResetClick}
-                >
-                  Reset filters
-                </button>
-                <select
-                  className={css.filtersInputCategory}
-                  name="category"
-                  value={category}
-                  onChange={handleCategoryChange}
-                >
-                  <option key="exp-categories" value="" disabled>
-                    Category
-                  </option>
-                  <option key="all-categories" value="">
-                    All
-                  </option>
-                  {categories.map((category) => (
-                    <option key={category._id} value={category.name}>
-                      {category.name}
-                    </option>
-                  ))}
-                </select>
-                <select
-                  className={css.filtersInputIngredient}
-                  name="ingredient"
-                  value={ingredient}
-                  onChange={handleIngredientChange}
-                >
-                  <option key="exp-ingredients" value="" disabled>
-                    Ingredient
-                  </option>
-                  <option key="all-ingredients" value="">
-                    All
-                  </option>
-                  {ingredients.map((ingredient) => (
-                    <option key={ingredient._id} value={ingredient._id}>
-                      {ingredient.name}
-                    </option>
-                  ))}
-                </select>
-              </form>
-            </div>
-          )}
-          {isMobileOrTablet && (
-            <IconButton
-              className={css.filtersModalOpenBtn}
-              aria-label="Open filters"
-              onClick={handleFiltersBtnClick}
-            >
-              <span className={css.filtersModalOpenBtnTxt}>Filters</span>
-              <svg
-                className={css.filtersModalOpenBtnSvg}
-                width="24"
-                height="24"
-              >
-                <use xlinkHref="/sprite.svg#icon-filter-24px" />
-              </svg>
-            </IconButton>
-          )}
-          {isMobileOrTablet && isModalOpen && (
-            <div
-              className={css.filtersModalOverlay}
-              onClick={handleOverlayClick}
-              role="dialog"
-              aria-modal="true"
-            >
-              <div className={css.filtersModal}>
-                <div className={css.filtersModalHeader}>
-                  <span>Filters</span>
-                  <button
-                    className={css.filtersModalResetBtn}
-                    type="button"
-                    onClick={() => {
-                      handleResetClick();
-                      setIsModalOpen(false);
-                    }}
-                  >
-                    Reset filters
-                  </button>
-                </div>
-                <form className={css.filtersModalForm}>
-                  <label>
-                    Category
-                    <select
-                      className="filtersModalCategory"
-                      value={category}
-                      onChange={handleCategoryChange}
-                    >
-                      <option key="modal-exp-categories" value="" disabled>
-                        e.g. Soup
-                      </option>
-                      <option key="modal-all-categories" value="">
-                        All
-                      </option>
-                      {categories.map((category) => (
-                        <option key={category._id} value={category.name}>
-                          {category.name}
-                        </option>
-                      ))}
-                    </select>
-                  </label>
-                  <label>
-                    Ingredient
-                    <select
-                      className="filtersModalInputIngredient"
-                      value={ingredient}
-                      onChange={handleIngredientChange}
-                    >
-                      <option key="modal-exp-ingredients" value="" disabled>
-                        e.g. Broccoli
-                      </option>
-                      <option key="modal-all-ingredients" value="">
-                        All
-                      </option>
-                      {ingredients.map((ingredient) => (
-                        <option key={ingredient._id} value={ingredient._id}>
-                          {ingredient.name}
-                        </option>
-                      ))}
-                    </select>
-                  </label>
-                </form>
-              </div>
-            </div>
-          )}
-        </div>
-      </div>
-      <ToastInfo />
-    </>
+  // Генерация диапазона цен
+  const minPrice = allPrices.length ? Math.min(...allPrices) : 0;
+  const maxPrice = allPrices.length ? Math.max(...allPrices) : 0;
+
+  function generatePriceRange(min, max, step) {
+    const range = [];
+    for (let p = Math.ceil(min / step) * step; p <= max; p += step) {
+      range.push(p);
+    }
+    return range;
+  }
+
+  const step = 10;
+  const priceOptions = generatePriceRange(minPrice, maxPrice, step).map(
+    (p) => ({
+      value: p,
+      label: p,
+    })
   );
+
+  const brandOptions = [
+    { value: "", label: "All Brands" },
+    ...brands.map((b) => ({ value: b, label: b })),
+  ];
+
+  const handleSearch = (e) => {
+    e.preventDefault();
+
+    const params = new URLSearchParams();
+
+    if (brand) params.set("brand", brand);
+    if (price) params.set("price", price);
+    if (fromMileage) params.set("minMileage", fromMileage);
+    if (toMileage) params.set("maxMileage", toMileage);
+
+    navigate({ pathname: "/catalog", search: params.toString() });
+
+    onChange({ brand, price, fromMileage, toMileage });
+  };
+
+  // Чистим inputы, оставляя только цифры
+  const cleanNumberInput = (value) => value.replace(/[^\d]/g, "");
+
+    return (
+      <div className={css.container}>
+        <form className={css.filtersForm}>
+          <label className={css.label}>
+            Car brand
+            <div className={css.containerSelect}>
+              <Select
+                components={{
+                  DropdownIndicator: IconDown,
+                }}
+                options={brandOptions}
+                styles={getCustomStyles({ menuHeight: 272 })}
+                value={brand ? { value: brand, label: brand } : null}
+                onChange={(selected) => setBrand(selected?.value || "")}
+                placeholder="Choose a brand"
+              />
+            </div>
+          </label>
+          <label className={css.label}>
+            Price/ 1 hour
+            <div className={css.containerSelect}>
+              <Select
+                options={priceOptions}
+                value={price ? { value: price, label: `To $${price}` } : null}
+                onChange={(selected) => setPrice(selected?.value || "")}
+                placeholder="Max price"
+                components={{ DropdownIndicator: IconDown }}
+                styles={getCustomStyles({ menuHeight: 188 })}
+              />
+            </div>
+          </label>
+          <label className={css.labelInput}>
+            Сar mileage / km
+            <div className={css.containerInput}>
+              <input
+                className={css.inputLeft}
+                type="text"
+                inputMode="numeric"
+                pattern="\d*"
+                placeholder="From"
+                value={
+                  fromMileage
+                    ? `From ${Number(fromMileage).toLocaleString("en-US")}`
+                    : ""
+                }
+                onChange={(e) =>
+                  setFromMileage(cleanNumberInput(e.target.value))
+                }
+                onBlur={(e) => setFromMileage(cleanNumberInput(e.target.value))}
+              />
+              <input
+                className={css.input}
+                type="text"
+                inputMode="numeric"
+                pattern="\d*"
+                placeholder="To"
+                value={
+                  toMileage
+                    ? `To ${Number(toMileage).toLocaleString("en-US")}`
+                    : ""
+                }
+                onChange={(e) => setToMileage(cleanNumberInput(e.target.value))}
+                onBlur={(e) => setToMileage(cleanNumberInput(e.target.value))}
+              />
+            </div>
+          </label>
+        </form>
+        <Button variant="primary" className={css.btn} onClick={handleSearch}>
+          Search
+        </Button>
+      </div>
+    );
 }

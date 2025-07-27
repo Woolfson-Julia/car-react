@@ -1,0 +1,14 @@
+.cardList {
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  gap: 32px;
+  width: 1200px;
+  margin-bottom: 80px;
+}
+
+.cardItem {
+  width: calc((100% - 3 * 32px) / 4);
+  height: 424px;
+}

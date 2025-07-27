@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const instance = axios.create({
-  baseURL: "https://byte-bite-v2-0.onrender.com/api",
+  baseURL: "https://car-rental-api.goit.global",
 });
 
 export default instance;

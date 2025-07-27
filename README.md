@@ -1,38 +1,48 @@
-🍽 Tasteorama — Recipe Sharing Web App
-RecipeHub is a full-featured web application where users can:
+# RentalCar - Web Application for Car Rental 🚗
 
-📖 Browse a variety of recipes
+## 📌 Overview
 
-➕ Add and manage their own recipes
+**RentalCar** is the frontend part of a web application for a company specializing in car rentals. The app allows users to browse available cars, filter them by specific criteria, view detailed information, and make a reservation online.
 
-🔍 Search by title and filter by category or ingredients
+## 🛠️ Technologies Used
 
-❤️ Save favorite recipes
+- ⚛️ **React** + **Vite**
+- 🔁 **Redux Toolkit** - state management
+- 🌐 **React Router** - routing
+- 📡 **Axios** - for handling API requests
+- 💅 **CSS Modules** - component-level styling
+- 📦 **Backend API** - a ready-made API is used - https://car-rental-api.goit.global/api-docs/#/
 
-👤 Register and log in for a personalized experience
+## 📄 Main Pages
 
-🚀 Built With
-React + Vite — fast development and modern tooling
+- `/` - Home page (banner + call to action)
+- `/catalog` - Car catalog with filtering and option to add to favorites
+- `/catalog/:id` - Detailed car page with booking form
 
-React Router — client-side routing
+## 🔍 Key Features
 
-MongoDB — backend and database
+- Navigation from the home page to the catalog via a "View Catalog" button
+- Filtering by brand, price, and mileage (filters work through backend requests)
+- Add/remove cars to/from a list of favorites (favorites are stored in local storage)
+- Detailed car page includes full specs, images, and booking form
+- Booking form with success notification
+- Pagination via a "Load More" button
 
-CSS Modules / SCSS  — styling
+## 🚀 Getting Started
 
-Optional: Formik + Yup, React Hook Form, Axios, etc.
+1. **Clone the repository**:
+   ```bash
+   git clone https://github.com/Woolfson-Julia/car-react.git
 
-🔧 Features
-User authentication and registration
 
-Create, edit, and delete personal recipes
+## 👩‍💻 About the Author
+Hi! My name is Yuliia, and I'm a junior frontend developer who has recently completed my training in web development. This project was created as a part of a test assignment and showcases my practical skills in working with React, Redux Toolkit, routing, REST APIs, and component-based architecture.
 
-View detailed recipe pages
+I'm passionate about clean code, user-friendly interfaces, and continuous learning. I'm now actively looking for an opportunity to grow as a developer and contribute to real-world products.
 
-Search and filter functionality
+📫 Email: woolfson1995@gmail.com
 
-Search recipes by title
+🐙 GitHub: https://github.com/Woolfson-Julia?tab=repositories
 
-Add to favorites (for logged-in users)
-
-Responsive design for mobile, tablet and desktop
+🌐 Live Demo
+https://rentalcar-app.vercel.app

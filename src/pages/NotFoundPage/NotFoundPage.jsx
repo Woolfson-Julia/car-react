@@ -11,8 +11,6 @@ export default function NotFoundPage() {
           </svg>
         </div>
 
-        <h1 className={css.title}>Tasteorama</h1>
-
         <div className={css.errorCode}>404</div>
 
         <h2 className={css.subtitle}>Page not found!</h2>
@@ -28,16 +26,6 @@ export default function NotFoundPage() {
           </Link>
         </div>
 
-        <div className={css.decorativeElements}>
-          <div className={css.ingredient}>🥕</div>
-          <div className={css.ingredient}>🍅</div>
-          <div className={css.ingredient}>🥬</div>
-          <div className={css.ingredient}>🧄</div>
-          <div className={css.ingredient}>🥒</div>
-          <div className={css.ingredient}>🌶️</div>
-          <div className={css.ingredient}>🧅</div>
-          <div className={css.ingredient}>🥔</div>
-        </div>
       </div>
     </div>
   );

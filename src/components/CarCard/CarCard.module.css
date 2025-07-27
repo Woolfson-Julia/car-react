@@ -1,0 +1,82 @@
+.containerCard {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  flex-direction: column;
+  width: 276px;
+  height: 424px;
+}
+.containerImg {
+  width: 100%;
+  max-width: 276px;
+  height: 268px;
+  overflow: hidden;
+  position: relative;
+  margin-bottom: 16px;
+}
+.img {
+  border-radius: 14px;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+.btn {
+  position: absolute;
+  border: none;
+  background: transparent;
+  top: 16px;
+  right: 16px;
+}
+.containerTitle {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 8px;
+}
+.cardTitle {
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 1.25;
+}
+
+.cardModel {
+  color: var(--button);
+}
+.cardPrice {
+  margin-right: 16px;
+  font-weight: 500;
+  line-height: 1.25;
+}
+
+.cardText {
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 1.33;
+  color: var(--gray);
+  margin-bottom: 4px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.line {
+  display: inline-block;
+  width: 1px;
+  height: 16px;
+  background-color: #dadde1;
+  margin: 0 6px;
+  vertical-align: middle;
+}
+.cardTextType {
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 1.33;
+  color: var(--gray);
+}
+.btnReadMore {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 276px;
+  height: 44px;
+}

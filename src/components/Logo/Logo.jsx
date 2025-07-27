@@ -1,11 +1,12 @@
+import { Link } from "react-router-dom";
 import css from "./Logo.module.css";
 
 export default function Logo() {
   return (
-    <a className={css.link} href="/">
-      <svg className={css.icon} width="165" height="46">
+    <Link className={css.link} to="/">
+      <svg className={css.icon} width="104" height="16">
         <use href="/sprite.svg#icon-logo" />
       </svg>
-    </a>
+    </Link>
   );
 }

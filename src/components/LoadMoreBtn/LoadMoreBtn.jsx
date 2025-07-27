@@ -3,13 +3,13 @@ import Button from "../Button/Button";
 
 export default function LoadMoreBtn({ onClick }) {
   return (
-    <div className={css.buttonWrapper}>
+    <div className={css.btnContainer}>
       <Button
         onClick={onClick}
-        variant="darkButton"
-        className={css.loadMoreButton}
+        variant="outline"
+        className={css.loadMoreBtn}
       >
-        Load More
+        Load more
       </Button>
     </div>
   );

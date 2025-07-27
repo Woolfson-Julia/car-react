@@ -1,11 +1,7 @@
-.buttonWrapper {
-  display: flex;
-  justify-content: center;
-  margin-top: 24px;
-  margin-bottom: 48px;
-}
-
-.loadMoreButton {
-  padding: 16px 95.5px;
-  margin: 0 auto;
+.loadMoreBtn {
+display: flex;
+justify-content: center;
+align-items: center;
+width: 156px;
+height: 44px;
 }

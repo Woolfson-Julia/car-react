@@ -1,0 +1,210 @@
+.containerCarPage {
+  display: flex;
+  gap: 72px;
+}
+.containerImgForm {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 40px;
+}
+
+.containerImg {
+  width: 100%;
+  max-width: 640px;
+  height: 512px;
+  overflow: hidden;
+  position: relative;
+}
+.img {
+  border-radius: 19px;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+.containerContent {
+  display: flex;
+  flex-direction: column;
+
+  max-width: 488px;
+}
+.containerTitle {
+  display: flex;
+  gap: 16px;
+  margin-bottom: 8px;
+  align-items: baseline;
+}
+.cardTitle {
+  padding: 0;
+  font-weight: 600;
+  font-size: 24px;
+  line-height: 1.33;
+}
+.titleId {
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 1.25;
+  color: var(--gray);
+}
+.icon {
+  fill: var(--main);
+}
+.containerText {
+  display: flex;
+  margin-bottom: 16px;
+  gap: 16px;
+}
+.location {
+  display: flex;
+  gap: 2px;
+  justify-content: center;
+  align-items: center;
+}
+.text {
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 1.25;
+  color: var(--main);
+}
+.cardPrice {
+  font-weight: 600;
+  font-size: 24px;
+  line-height: 1.33;
+  color: var(--button);
+  margin-bottom: 32px;
+}
+.textLast {
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 1.25;
+  color: var(--main);
+  margin-bottom: 68px;
+}
+
+.titleList {
+  font-weight: 600;
+  font-size: 20px;
+  line-height: 1.2;
+  color: var(--main);
+  margin-bottom: 20px;
+}
+
+.list {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-bottom: 110px;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 1.25;
+  color: var(--main);
+}
+.item {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+.listLast {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 1.25;
+  color: var(--main);
+}
+
+.form {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  border: 1px solid var(--gray-light);
+  border-radius: 10px;
+  padding: 32px;
+  width: 640px;
+  height: 488px;
+  background: transparent;
+}
+.formContainer {
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  flex-direction: column;
+}
+.formTitle {
+  font-weight: 600;
+  font-size: 20px;
+  line-height: 1.2;
+  color: var(--main);
+  margin-bottom: 8px;
+}
+
+.formText {
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 1.25;
+  color: var(--gray);
+  margin-bottom: 24px;
+}
+.inputContainer {
+  position: relative;
+}
+.input {
+  border-radius: 12px;
+  border: none;
+  padding: 12px 20px;
+  width: 576px;
+  height: 48px;
+  background: var(--inputs);
+  outline: none;
+  margin-bottom: 16px;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 1.25;
+  color: var(--gray);
+}
+.error {
+  position: absolute;
+  bottom: 0;
+  left: 10px;
+  font-weight: 500;
+  font-size: 10px;
+  line-height: 1.25;
+  color: red;
+}
+
+.input::placeholder {
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 1.25;
+}
+
+.textarea {
+  border-radius: 12px;
+  padding: 12px 20px 56px 20px;
+  width: 576px;
+  height: 88px;
+  background: var(--inputs);
+  border: none;
+  outline: none;
+  resize: none;
+  overflow: hidden;
+  margin-bottom: 24px;
+}
+
+input[type="date"]::-webkit-calendar-picker-indicator {
+  display: none;
+  -webkit-appearance: none;
+}
+
+.btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 12px;
+  width: 156px;
+  height: 44px;
+}

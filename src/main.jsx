@@ -7,7 +7,7 @@ import App from "./components/App/App";
 import { store, persistor } from "./redux/store";
 import "modern-normalize";
 import "./index.css";
-import "../modalInit";
+
 
 createRoot(document.getElementById("root")).render(
     <Provider store={store}>
