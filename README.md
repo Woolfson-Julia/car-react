@@ -40,9 +40,8 @@ Hi! My name is Yuliia, and I'm a junior frontend developer who has recently comp
 
 I'm passionate about clean code, user-friendly interfaces, and continuous learning. I'm now actively looking for an opportunity to grow as a developer and contribute to real-world products.
 
-📫 Email: woolfson1995@gmail.com
 
-🐙 GitHub: https://github.com/Woolfson-Julia?tab=repositories
+🐙 GitHub: https://github.com/Woolfson-Julia/car-react
 
 🌐 Live Demo
-https://rentalcar-app.vercel.app
+https://car-react-delta.vercel.app/
